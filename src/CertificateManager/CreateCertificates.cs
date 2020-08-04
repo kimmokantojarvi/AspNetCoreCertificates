@@ -208,14 +208,6 @@ namespace CertificateManager
                 _certificateUtility.CreateIssuerOrSubject(distinguishedName),
                 ecdsa,
                 eCDsaConfiguration.HashAlgorithmName);
-            X509Certificate2 cert = ChainedConfiguration(
-                basicConstraints, 
-                validityPeriod, 
-                subjectAlternativeName, 
-                signingCertificate, 
-                enhancedKeyUsages, 
-                x509KeyUsageFlags, 
-                request);
 
             return NewECDsaChainedCertificate(basicConstraints,
                                               validityPeriod,
