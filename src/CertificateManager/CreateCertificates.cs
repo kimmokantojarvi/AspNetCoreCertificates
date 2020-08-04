@@ -137,15 +137,6 @@ namespace CertificateManager
             X509KeyUsageFlags x509KeyUsageFlags,
             RsaConfiguration rsaConfiguration)
         {
-            if (signingCertificate == null)
-            {
-                throw new ArgumentNullException(nameof(signingCertificate));
-            }
-            if (!signingCertificate.HasPrivateKey)
-            {
-                throw new Exception("Signing cert must have private key");
-            }
-
             using var rsa = RSA.Create(rsaConfiguration.KeySize);
             var request = new CertificateRequest(
                 _certificateUtility.CreateIssuerOrSubject(distinguishedName),
@@ -211,15 +202,6 @@ namespace CertificateManager
             X509KeyUsageFlags x509KeyUsageFlags,
             ECDsaConfiguration eCDsaConfiguration)
         {
-            if (signingCertificate == null)
-            {
-                throw new ArgumentNullException(nameof(signingCertificate));
-            }
-            if (!signingCertificate.HasPrivateKey)
-            {
-                throw new Exception("Signing cert must have private key");
-            }
-
             using var ecdsa = ECDsa.Create("ECDsa");
             ecdsa.KeySize = eCDsaConfiguration.KeySize;
             var request = new CertificateRequest(
